@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: bee1f1691ea3a4d42b966bfadbf311fe
+timeCreated: 1498360933
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Mouse
+  fontNames:
+  - Mouse
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
