@@ -970,7 +970,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -9550,7 +9550,7 @@ PrefabInstance:
     - target: {fileID: 4097092184745185633, guid: 61b91c0f28b1e7d498c5aec2df5aba21,
         type: 3}
       propertyPath: m_Name
-      value: Trade Entry (2)
+      value: Trade Entry Stone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b91c0f28b1e7d498c5aec2df5aba21, type: 3}
@@ -10479,7 +10479,7 @@ PrefabInstance:
     - target: {fileID: 4097092184745185633, guid: 61b91c0f28b1e7d498c5aec2df5aba21,
         type: 3}
       propertyPath: m_Name
-      value: Trade Entry (1)
+      value: Trade Entry Wood
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b91c0f28b1e7d498c5aec2df5aba21, type: 3}
@@ -13774,7 +13774,7 @@ PrefabInstance:
     - target: {fileID: 4097092184745185633, guid: 61b91c0f28b1e7d498c5aec2df5aba21,
         type: 3}
       propertyPath: m_Name
-      value: Trade Entry
+      value: Trade Entry Food
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b91c0f28b1e7d498c5aec2df5aba21, type: 3}
