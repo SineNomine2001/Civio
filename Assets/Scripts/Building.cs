@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Gamekit2D;
 
 [RequireComponent(typeof(Damageable))]
@@ -50,7 +51,7 @@ public class Building : MonoBehaviour
     public void OnMouseDown()
     {
         // Show detail of building
-        if (!PlaceBuildingUI.Instance.GetComponent<Canvas>().enabled)
+        if (!PlaceBuildingUI.Instance.GetComponent<Canvas>().enabled && !EventSystem.current.IsPointerOverGameObject())
         {
             CameraMover.Instance.MoveCamera(Data.centerPos);
             CreateBuilding_UnitUI.Instance.Show(OwnerDistrict, true);

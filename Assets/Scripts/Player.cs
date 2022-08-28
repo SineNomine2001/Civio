@@ -20,14 +20,43 @@ public class Player : MonoBehaviour
     {
         while (this)
         {
-            DResource = TradeResource;
             TradeCapacity = 0;
+
+            Res DistrictResource = Res.zero;
             foreach (District district in Districts)
             {
-                DResource += district.DResource;
+                DistrictResource += district.DResource;
                 if(district.Type == DistrictType.Town)
                     TradeCapacity += district.Capacity;
             }
+
+            // Make bankruptcy illegal
+            Res NewResource = Resource + TradeResource + DistrictResource;
+            Res NewTradeResource = TradeResource;
+            if (NewResource.food < 0)
+            {
+                NewTradeResource -= NewTradeResource.Food();
+                OverlayUI.Instance.ShowFoodBankruptcyText();
+            }
+            if (NewResource.wood < 0)
+            {
+                NewTradeResource -= NewTradeResource.Wood();
+                OverlayUI.Instance.ShowWoodBankruptcyText();
+            }
+            if (NewResource.stone < 0)
+            {
+                NewTradeResource -= NewTradeResource.Stone();
+                OverlayUI.Instance.ShowStoneBankruptcyText();
+            }
+            if (NewResource.coin < 0)
+            {
+                NewTradeResource -= NewTradeResource.Food() + NewTradeResource.Wood() + NewTradeResource.Stone();
+                OverlayUI.Instance.ShowCoinBankruptcyText();
+            }
+            
+            SetTrade(NewTradeResource);
+
+            DResource = DistrictResource + TradeResource;
             Resource += DResource;
             yield return new WaitForSeconds(1f);
         }

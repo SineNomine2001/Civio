@@ -32,7 +32,22 @@ public class OverlayUI : UI
         s_Instance = this;
     }
 
-    public IEnumerator ShowPlacementFailureText(PlaceBuildingResult result)
+    public IEnumerator ShowText()
+    {
+        Color temp = WarningText.color;
+        temp.a = 0f;
+        Color transparent = temp;
+        temp.a = 1f;
+        Color opaque = temp;
+
+        for (float t = 0.01f; t < fadeTime; t += Time.deltaTime)
+        {
+            WarningText.color = Color.Lerp(opaque, transparent, t / fadeTime);
+            yield return null;
+        }
+    }
+
+    public void ShowPlacementFailureText(PlaceBuildingResult result)
     {
         Show();
         switch (result)
@@ -57,34 +72,52 @@ public class OverlayUI : UI
                 break;
         }
 
-        Color temp = WarningText.color;
-        temp.a = 0f;
-        Color transparent = temp;
-        temp.a = 1f;
-        Color opaque = temp;
-
-        for (float t = 0.01f; t < fadeTime; t += Time.deltaTime)
-        {
-            WarningText.color = Color.Lerp(opaque, transparent, t / fadeTime);
-            yield return null;
-        }
+        StopAllCoroutines();
+        StartCoroutine(ShowText());
     }
 
-    public IEnumerator ShowTradeFailureText()
+    public void ShowTradeFailureText()
     {
         Show();
         WarningText.text = "Need more trade capacity!";
 
-        Color temp = WarningText.color;
-        temp.a = 0f;
-        Color transparent = temp;
-        temp.a = 1f;
-        Color opaque = temp;
+        StopAllCoroutines();
+        StartCoroutine(ShowText());
+    }
 
-        for (float t = 0.01f; t < fadeTime; t += Time.deltaTime)
-        {
-            WarningText.color = Color.Lerp(opaque, transparent, t / fadeTime);
-            yield return null;
-        }
+    public void ShowFoodBankruptcyText()
+    {
+        Show();
+        WarningText.text = "Not enough food to trade!";
+
+        StopAllCoroutines();
+        StartCoroutine(ShowText());
+    }
+
+    public void ShowWoodBankruptcyText()
+    {
+        Show();
+        WarningText.text = "Not enough wood to trade!";
+
+        StopAllCoroutines();
+        StartCoroutine(ShowText());
+    }
+
+    public void ShowStoneBankruptcyText()
+    {
+        Show();
+        WarningText.text = "Not enough stone to trade!";
+
+        StopAllCoroutines();
+        StartCoroutine(ShowText());
+    }
+
+    public void ShowCoinBankruptcyText()
+    {
+        Show();
+        WarningText.text = "Not enough coin to trade!";
+
+        StopAllCoroutines();
+        StartCoroutine(ShowText());
     }
 }

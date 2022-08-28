@@ -29,7 +29,6 @@ public class TradeManageUI : UI, IUpdateUI
     public new void ToggleVisibility()
     {
         base.ToggleVisibility();
-        UpdateInputFields();
         UpdateUI();
     }
 
@@ -43,21 +42,25 @@ public class TradeManageUI : UI, IUpdateUI
         s_Instance = this;
     }
 
+    void CheckTradeSuccessful(Res tradeResource)
+    {
+        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
+        if (!isTradeSuccessful)
+            OverlayUI.Instance.ShowTradeFailureText();
+        UpdateUI();
+    }
+
     public void OnTradeInput()
     {
         try
         {
-            bool isTradeSuccessful = GameUI.Instance.player.SetTrade(new Res(0, int.Parse(foodTradeText.text), int.Parse(woodTradeText.text), int.Parse(stoneTradeText.text), 0));
-            print(isTradeSuccessful);
-            if (!isTradeSuccessful)
-                StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
+            CheckTradeSuccessful(new Res(0, int.Parse(foodTradeText.text), int.Parse(woodTradeText.text), int.Parse(stoneTradeText.text), 0));
         }
         catch { }
-        UpdateInputFields();
         UpdateUI();
     }
 
-    public void UpdateInputFields()
+    void UpdateInputFields()
     {
         Res tradeResource = GameUI.Instance.player.TradeResource;
         foodTradeText.text = tradeResource.food.ToString("+#;-#;0");
@@ -67,6 +70,8 @@ public class TradeManageUI : UI, IUpdateUI
 
     public void UpdateUI()
     {
+        UpdateInputFields();
+
         Res tradeCoin = GameUI.Instance.player.TradeCoin;
         capacityText.text = "Capacity: " + GameUI.Instance.player.TradeCapacityUsed + "/" + GameUI.Instance.player.TradeCapacity;
         foodCoinText.text = tradeCoin.food.ToString("+#;-#;0");
@@ -87,14 +92,7 @@ public class TradeManageUI : UI, IUpdateUI
         else
             tradeResource += new Res(0, 1, 0, 0, 0);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
 
     public void DecrementFood()
@@ -109,14 +107,7 @@ public class TradeManageUI : UI, IUpdateUI
         else
             tradeResource += new Res(0, -1, 0, 0, 0);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
 
     public void ClearFood()
@@ -124,14 +115,7 @@ public class TradeManageUI : UI, IUpdateUI
         Res tradeResource = GameUI.Instance.player.TradeResource;
         tradeResource = new Res(tradeResource.pop, 0, tradeResource.wood, tradeResource.stone, tradeResource.coin);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
 
     public void IncrementWood()
@@ -146,14 +130,7 @@ public class TradeManageUI : UI, IUpdateUI
         else
             tradeResource += new Res(0, 0, 1, 0, 0);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
 
     public void DecrementWood()
@@ -168,14 +145,7 @@ public class TradeManageUI : UI, IUpdateUI
         else
             tradeResource += new Res(0, 0, -1, 0, 0);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
 
     public void ClearWood()
@@ -183,14 +153,7 @@ public class TradeManageUI : UI, IUpdateUI
         Res tradeResource = GameUI.Instance.player.TradeResource;
         tradeResource = new Res(tradeResource.pop, tradeResource.food, 0, tradeResource.stone, tradeResource.coin);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
 
     public void IncrementStone()
@@ -205,14 +168,7 @@ public class TradeManageUI : UI, IUpdateUI
         else
             tradeResource += new Res(0, 0, 0, 1, 0);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
 
     public void DecrementStone()
@@ -227,14 +183,7 @@ public class TradeManageUI : UI, IUpdateUI
         else
             tradeResource += new Res(0, 0, 0, -1, 0);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
 
     public void ClearStone()
@@ -242,14 +191,7 @@ public class TradeManageUI : UI, IUpdateUI
         Res tradeResource = GameUI.Instance.player.TradeResource;
         tradeResource = new Res(tradeResource.pop, tradeResource.food, tradeResource.wood, 0, tradeResource.coin);
 
-        bool isTradeSuccessful = GameUI.Instance.player.SetTrade(tradeResource);
-        if (!isTradeSuccessful)
-        {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowTradeFailureText());
-        }
-        UpdateInputFields();
-        UpdateUI();
+        CheckTradeSuccessful(tradeResource);
     }
     #endregion
 }

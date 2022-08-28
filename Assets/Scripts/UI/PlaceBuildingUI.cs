@@ -91,8 +91,7 @@ public class PlaceBuildingUI : UI
         }
         else
         {
-            StopAllCoroutines();
-            StartCoroutine(OverlayUI.Instance.ShowPlacementFailureText(result));
+            OverlayUI.Instance.ShowPlacementFailureText(result);
         }
     }
 }
