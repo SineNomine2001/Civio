@@ -58,15 +58,19 @@ public class PlaceBuildingUI : UI
             mousePositionWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
             preview.SetLocalPosition(mousePositionWorld);
 
-            if (Input.GetKey(StaticData.cancel) || Input.GetKey(StaticData.exit))
+            if (Input.GetKeyDown(StaticData.cancel) || Input.GetKeyDown(StaticData.exit))
             {
                 Hide();
             }
 
-            if (Input.GetKey(StaticData.confirm))
+            if (Input.GetKeyDown(StaticData.confirm))
             {
-                PlaceBuilding();
+                if (Input.GetKey(StaticData.x10))
+                    PlaceBuildingConsecutive();
+                else
+                    PlaceBuilding();
             }
+
         }
     }
 
@@ -90,6 +94,25 @@ public class PlaceBuildingUI : UI
                 building.OnMouseDown();
         }
         else
+        {
+            OverlayUI.Instance.ShowPlacementFailureText(result);
+        }
+    }
+
+    void PlaceBuildingConsecutive()
+    {
+        Vector3Int pos = TileMapManager.Instance.grid.WorldToCell(preview.transform.position);
+        Vector2Int coord = new Vector2Int(pos.x, pos.y);
+        BuildingData data = new BuildingData(key, coord);
+        PlaceBuildingResult result;
+        Building building = null;
+
+        if (district == null)
+            result = GameUI.Instance.player.CreateDistrict("blah", data);
+        else
+            result = district.PlaceBuilding(data, out building);
+
+        if (result != PlaceBuildingResult.Success)
         {
             OverlayUI.Instance.ShowPlacementFailureText(result);
         }
