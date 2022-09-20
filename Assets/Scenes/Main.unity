@@ -8333,6 +8333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8628aa3d18d0746a3f269f9b534fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  districtPrefab: {fileID: 3736735445075311025, guid: 5c88bd8745a93a54e913971965c94ab0,
+    type: 3}
 --- !u!1 &1717933149
 GameObject:
   m_ObjectHideFlags: 0
