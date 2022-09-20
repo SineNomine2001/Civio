@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class District : MonoBehaviour
 {
+    public GameObject buildingPrefab;
     #region Properties
     public Player OwnerPlayer { get; private set; }
     public string Name { get; private set; }
@@ -103,7 +104,7 @@ public class District : MonoBehaviour
             if (!isAffordable)
                 return PlaceBuildingResult.NotAffordable;
 
-            GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/Building"), transform);
+            GameObject go = Instantiate(buildingPrefab, transform);
             newBuilding = go.GetComponent<Building>().Init(data);
             AddBuilding(newBuilding);
         }

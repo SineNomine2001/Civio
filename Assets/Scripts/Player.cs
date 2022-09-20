@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject districtPrefab;
     #region Properties
     public Res Resource { get; private set; } = Res.zero;
     public Res DResource { get; private set; } = Res.zero;
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour
         {
             if (Resource >= StaticData.BDict[centerData.key].cost)
             {
-                GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/District"), transform);
+                GameObject go = Instantiate(districtPrefab, transform);
                 Districts.Add(go.GetComponent<District>().Init(name, centerData));
             }
             else

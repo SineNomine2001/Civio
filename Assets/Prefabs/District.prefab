@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb81e805671bb9d40bc829681c6c64e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingPrefab: {fileID: 4438273270053645400, guid: 354434eaba5452943966a1b16e596280,
+    type: 3}
