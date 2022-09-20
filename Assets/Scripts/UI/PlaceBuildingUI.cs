@@ -76,7 +76,7 @@ public class PlaceBuildingUI : UI
 
     void PlaceBuilding()
     {
-        Vector3Int pos = TileMapManager.Instance.grid.WorldToCell(preview.transform.position);
+        Vector3Int pos = TilemapManager.Instance.grid.WorldToCell(preview.transform.position);
         Vector2Int coord = new Vector2Int(pos.x, pos.y);
         BuildingData data = new BuildingData(key, coord);
         PlaceBuildingResult result;
@@ -101,7 +101,7 @@ public class PlaceBuildingUI : UI
 
     void PlaceBuildingConsecutive()
     {
-        Vector3Int pos = TileMapManager.Instance.grid.WorldToCell(preview.transform.position);
+        Vector3Int pos = TilemapManager.Instance.grid.WorldToCell(preview.transform.position);
         Vector2Int coord = new Vector2Int(pos.x, pos.y);
         BuildingData data = new BuildingData(key, coord);
         PlaceBuildingResult result;

@@ -36,7 +36,7 @@ public class Building : MonoBehaviour
             DResource = data.stats.dresource;
             Capacity = data.stats.capacity;
 
-            transform.position = TileMapManager.Instance.CoordToWorld(data.bottomLeftCorner);
+            transform.position = TilemapManager.Instance.CoordToWorld(data.bottomLeftCorner);
             GetComponent<SpriteRenderer>().sprite = StaticData.GetBuildingSprite(data.key);
             BoxCollider2D collider = GetComponent<BoxCollider2D>();
             collider.size = data.stats.size;
@@ -66,7 +66,7 @@ public class Building : MonoBehaviour
         Dictionary<int, Res> drAdj = Data.stats.drAdj;
         if (drAdj != null)
         {
-            HashSet<Building> adjacentBuildings = TileMapManager.Instance.GetBuildingsInTiles(Data.adjacentTiles);
+            HashSet<Building> adjacentBuildings = TilemapManager.Instance.GetBuildingsInTiles(Data.adjacentTiles);
             Debug.Log(adjacentBuildings.Count);
             foreach (Building adjBuilding in adjacentBuildings)
             {
@@ -84,7 +84,7 @@ public class Building : MonoBehaviour
         Dictionary<int, int> capAdj = Data.stats.capAdj;
         if (capAdj != null)
         {
-            HashSet<Building> adjacentBuildings = TileMapManager.Instance.GetBuildingsInTiles(Data.adjacentTiles);
+            HashSet<Building> adjacentBuildings = TilemapManager.Instance.GetBuildingsInTiles(Data.adjacentTiles);
             Debug.Log(adjacentBuildings.Count);
             foreach (Building adjBuilding in adjacentBuildings)
             {

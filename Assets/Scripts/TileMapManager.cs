@@ -3,22 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileMapManager : MonoBehaviour
+public class TilemapManager : MonoBehaviour
 {
+    #region Tiles
+    public MapRuleTile GrassTile;
+    public MapRuleTile WaterTile;
+    public MapRuleTile RockyTile;
+    public MapRuleTile GlacierTile;
+
+    public MapRuleTile ForestTile;
+    public MapRuleTile MangroveTile;
+    public MapRuleTile AlpineTile;
+
+    public RuleTile FogOfWarTile;
+    #endregion
     public GridLayout grid;
     public Tilemap terrainMap;
     public Tilemap forestMap;
     public Tilemap fogOfWarMap;
     public Res[,] resMultiplierMatrix;
 
-    protected static TileMapManager s_Instance;
-    public static TileMapManager Instance
+    protected static TilemapManager s_Instance;
+    public static TilemapManager Instance
     {
         get
         {
             if (s_Instance != null)
                 return s_Instance;
-            s_Instance = FindObjectOfType<TileMapManager>();
+            s_Instance = FindObjectOfType<TilemapManager>();
 
             return s_Instance;
         }

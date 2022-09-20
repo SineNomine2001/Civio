@@ -66,17 +66,17 @@ public static class TileAutomata
                     float h = heightMatrix[x, y];
 
                     if (h <= waterBound)
-                        TileMapManager.Instance.terrainMap.SetTile(coord, StaticData.WaterTile);
+                        TilemapManager.Instance.terrainMap.SetTile(coord, TilemapManager.Instance.WaterTile);
                     else if (h >= mountainBound && h < glacierBound)
-                        TileMapManager.Instance.terrainMap.SetTile(coord, StaticData.RockyTile);
+                        TilemapManager.Instance.terrainMap.SetTile(coord, TilemapManager.Instance.RockyTile);
                     else if (h >= glacierBound)
-                        TileMapManager.Instance.terrainMap.SetTile(coord, StaticData.GlacierTile);
+                        TilemapManager.Instance.terrainMap.SetTile(coord, TilemapManager.Instance.GlacierTile);
                     else
-                        TileMapManager.Instance.terrainMap.SetTile(coord, StaticData.GrassTile);
+                        TilemapManager.Instance.terrainMap.SetTile(coord, TilemapManager.Instance.GrassTile);
                 }
                 else
                 {
-                    TileMapManager.Instance.fogOfWarMap.SetTile(coord, StaticData.FogOfWarTile);
+                    TilemapManager.Instance.fogOfWarMap.SetTile(coord, TilemapManager.Instance.FogOfWarTile);
                 }
             }
         }
@@ -135,12 +135,12 @@ public static class TileAutomata
 
                 if (forestMatrix[x, y] == 1)
                 {
-                    if (TileMapManager.Instance.terrainMap.GetTile(coord) == StaticData.GrassTile)
-                        TileMapManager.Instance.forestMap.SetTile(coord, StaticData.ForestTile);
+                    if (TilemapManager.Instance.terrainMap.GetTile(coord) == TilemapManager.Instance.GrassTile)
+                        TilemapManager.Instance.forestMap.SetTile(coord, TilemapManager.Instance.ForestTile);
                     else if (h <= waterBound && Random.Range(mangroveLimit, 0.5f) <= h)
-                        TileMapManager.Instance.forestMap.SetTile(coord, StaticData.MangroveTile);
+                        TilemapManager.Instance.forestMap.SetTile(coord, TilemapManager.Instance.MangroveTile);
                     else if (h >= mountainBound && Random.Range(0.5f, alpineLimit) >= h)
-                        TileMapManager.Instance.forestMap.SetTile(coord, StaticData.AlpineTile);
+                        TilemapManager.Instance.forestMap.SetTile(coord, TilemapManager.Instance.AlpineTile);
                 }
             }
         }
@@ -187,7 +187,7 @@ public static class TileAutomata
             {
                 // Set as water
                 Vector3Int pos = new Vector3Int(nextCoord.x, nextCoord.y, 0);
-                TileMapManager.Instance.terrainMap.SetTile(pos, StaticData.WaterTile);
+                TilemapManager.Instance.terrainMap.SetTile(pos, TilemapManager.Instance.WaterTile);
 
                 // Examine 8 neighbours
                 List<Vector3Int> neighbours = new List<Vector3Int>();
@@ -237,7 +237,7 @@ public static class TileAutomata
                 float noiseVal = Random.value;
                 if (noiseVal >= 1 - riverNoiseFactor)
                 {
-                    TileMapManager.Instance.terrainMap.SetTile(nextCoord, StaticData.WaterTile);
+                    TilemapManager.Instance.terrainMap.SetTile(nextCoord, TilemapManager.Instance.WaterTile);
                     // Randomly bend the river to some direction
                     Vector3Int distortion;
                     if (Random.Range(0f,1f) < 0.5f)
@@ -275,7 +275,7 @@ public static class TileAutomata
 
     public static void GenerateMap()
     {
-        TileMapManager.Instance.Clear();
+        TilemapManager.Instance.Clear();
         Random.InitState(randSeed);
         offset = new Vector2Int(Random.Range(0, 1000), Random.Range(0, 1000));
         poffset = new Vector2Int(Random.Range(0, 1000), Random.Range(0, 1000));

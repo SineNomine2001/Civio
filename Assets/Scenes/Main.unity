@@ -1469,7 +1469,7 @@ GameObject:
   - component: {fileID: 210848902}
   - component: {fileID: 210848904}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Tilemaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1517,6 +1517,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c940be0db55ba44bbb470b8740ba2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GrassTile: {fileID: 11400000, guid: c680805772848ae45a2d52cd7e1f118c, type: 2}
+  WaterTile: {fileID: 11400000, guid: 4fd8d61325288a74a992f3aaebf01e2a, type: 2}
+  RockyTile: {fileID: 11400000, guid: a343d0207afe253419da1b87634953bb, type: 2}
+  GlacierTile: {fileID: 11400000, guid: 854e67492c44d774b8129f404ef28f50, type: 2}
+  ForestTile: {fileID: 11400000, guid: a492bb01086e9464b80854c82bc088b0, type: 2}
+  MangroveTile: {fileID: 11400000, guid: bde3d5e652eec3447b34732d00d229f1, type: 2}
+  AlpineTile: {fileID: 11400000, guid: 3342eb4c88586dd4d96fb462b4be28b2, type: 2}
+  FogOfWarTile: {fileID: 11400000, guid: ec9af40e23117064bbb31b8969c17f11, type: 2}
   grid: {fileID: 210848902}
   terrainMap: {fileID: 873065536}
   forestMap: {fileID: 1545567520}

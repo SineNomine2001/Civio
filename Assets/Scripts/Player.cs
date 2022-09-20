@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
 
     public PlaceBuildingResult CreateDistrict(string name, BuildingData centerData)
     {
-        PlaceBuildingResult result = TileMapManager.Instance.TestBuildingPlacement(centerData);
+        PlaceBuildingResult result = TilemapManager.Instance.TestBuildingPlacement(centerData);
         if (result == PlaceBuildingResult.Success)
         {
             if (Resource >= StaticData.BDict[centerData.key].cost)

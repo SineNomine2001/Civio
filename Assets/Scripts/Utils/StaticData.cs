@@ -6,18 +6,6 @@ using UnityEngine.Tilemaps;
 
 public static class StaticData
 {
-    #region Tiles
-    public static readonly MapRuleTile GrassTile = Resources.Load<MapRuleTile>("Tiles/Grass");
-    public static readonly MapRuleTile WaterTile = Resources.Load<MapRuleTile>("Tiles/Water");
-    public static readonly MapRuleTile RockyTile = Resources.Load<MapRuleTile>("Tiles/Rocky");
-    public static readonly MapRuleTile GlacierTile = Resources.Load<MapRuleTile>("Tiles/Glacier");
-
-    public static readonly MapRuleTile ForestTile = Resources.Load<MapRuleTile>("Tiles/Forest");
-    public static readonly MapRuleTile MangroveTile = Resources.Load<MapRuleTile>("Tiles/Mangrove");
-    public static readonly MapRuleTile AlpineTile = Resources.Load<MapRuleTile>("Tiles/Alpine");
-
-    public static readonly RuleTile FogOfWarTile = Resources.Load<RuleTile>("Tiles/FogOfWar");
-    #endregion
     #region KeyBindings
     public static KeyCode confirm = KeyCode.Mouse0;
     public static KeyCode cancel = KeyCode.Mouse1;

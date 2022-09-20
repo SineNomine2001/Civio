@@ -86,7 +86,7 @@ public class District : MonoBehaviour
     public PlaceBuildingResult PlaceBuilding(BuildingData data, out Building newBuilding)
     {
         newBuilding = null;
-        PlaceBuildingResult result = TileMapManager.Instance.TestBuildingPlacement(data);
+        PlaceBuildingResult result = TilemapManager.Instance.TestBuildingPlacement(data);
         if (result == PlaceBuildingResult.Success)
         {
             bool isTypeOK = (int)Type == data.key / 100;
