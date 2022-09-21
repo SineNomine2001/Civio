@@ -3,21 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlaceBuildingUI : UI
+public class PlaceBuildingUI : CanvasUI<PlaceBuildingUI>
 {
-    protected static PlaceBuildingUI s_Instance;
-    public static PlaceBuildingUI Instance
-    {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<PlaceBuildingUI>();
-
-            return s_Instance;
-        }
-    }
-
     public PBPreview preview;
     public TMP_Text cancelText;
 
@@ -32,23 +19,13 @@ public class PlaceBuildingUI : UI
         preview.Set(key);
         preview.Show();
         cancelText.text = "Press " + StaticData.cancel + " or " + StaticData.exit + " to cancel.";
-        GameUI.Instance.HideAllExcept(this);
+        GameUI.Instance.HideAllExcept(this.gameObject);
     }
 
     public override void Hide()
     {
         GameUI.Instance.RestoreDefault();
         preview.Hide();
-    }
-
-    void Awake()
-    {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
     }
 
     void Update()

@@ -4,21 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class BuildingInfoUI : UI, IUpdateUI
+public class BuildingInfoUI : CanvasUI<BuildingInfoUI>, IUpdateUI
 {
-    protected static BuildingInfoUI s_Instance;
-    public static BuildingInfoUI Instance
-    {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<BuildingInfoUI>();
-
-            return s_Instance;
-        }
-    }
-
     public TMP_Text nameText;
     public TMP_Text outputText;
     public TMP_Text hpText;
@@ -50,15 +37,5 @@ public class BuildingInfoUI : UI, IUpdateUI
         nameText.text = building.Data.stats.name;
         outputText.text = "Output: " + building.Data.stats.dresource.ToColouredString();
         hpText.text = "HP: " + building.HP.CurrentHealth + "/" + building.HP.startingHealth;
-    }
-
-    void Awake()
-    {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
     }
 }

@@ -5,21 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DistrictManageUI : PagedPanelUI, IUpdateUI
+public class DistrictManageUI : PagedPanelUI<DistrictManageUI>, IUpdateUI
 {
-    protected static DistrictManageUI s_Instance;
-    public static DistrictManageUI Instance
-    {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<DistrictManageUI>();
-
-            return s_Instance;
-        }
-    }
-
     public TMP_Text countText;
 
     public new void ToggleVisibility()
@@ -29,17 +16,6 @@ public class DistrictManageUI : PagedPanelUI, IUpdateUI
         allEntryData = GameUI.Instance.player.Districts.Cast<object>().ToList();
         countText.text = "Count: " + allEntryData.Count;
         OnPanelShown();
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
     }
 
     public void UpdateUI()

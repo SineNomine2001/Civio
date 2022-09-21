@@ -4,21 +4,8 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
-public class DistrictInfoUI : PagedPanelUI, IUpdateUI
+public class DistrictInfoUI : PagedPanelUI<DistrictInfoUI>, IUpdateUI
 {
-    protected static DistrictInfoUI s_Instance;
-    public static DistrictInfoUI Instance
-    {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<DistrictInfoUI>();
-
-            return s_Instance;
-        }
-    }
-
     public District ShownDistrict { get; private set; }
 
     public TMP_Text nameText;
@@ -57,16 +44,5 @@ public class DistrictInfoUI : PagedPanelUI, IUpdateUI
             entries[i].Set(currentEntryData[i]);
             i++;
         }
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
     }
 }

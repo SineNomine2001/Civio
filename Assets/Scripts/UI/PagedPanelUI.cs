@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PagedPanelUI : UI
+public class PagedPanelUI<T> : CanvasUI<T> where T : MonoBehaviour
 {
     public RectTransform panel;
     public TMP_Text totalPageText;

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI : MonoBehaviour
+[RequireComponent(typeof(Canvas))]
+public class CanvasUI<T> : MonoSingleton<T> where T : MonoBehaviour
 {
     public virtual void ToggleVisibility()
     {

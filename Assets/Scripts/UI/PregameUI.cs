@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PregameUI : UI
+public class PregameUI : CanvasUI<PregameUI>
 {
     public void OnStartButtonClicked()
     {

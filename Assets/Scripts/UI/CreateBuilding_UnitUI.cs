@@ -3,26 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CreateBuilding_UnitUI : PagedPanelUI
+public class CreateBuilding_UnitUI : PagedPanelUI<CreateBuilding_UnitUI>
 {
-    protected static CreateBuilding_UnitUI s_Instance;
-    public static CreateBuilding_UnitUI Instance
-    {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<CreateBuilding_UnitUI>();
-
-            return s_Instance;
-        }
-    }
-
     bool isPanelShown;
     District district;
 
     public RectTransform rectTransform;
     public Canvas mainCanvas;
+
+    protected override void OnAwake()
+    {
+        isPanelShown = false;
+    }
 
     public new void ToggleVisibility()
     {
@@ -87,18 +79,5 @@ public class CreateBuilding_UnitUI : PagedPanelUI
             transform.position -= new Vector3(rectTransform.rect.width * mainCanvas.scaleFactor, 0, 0);
             isPanelShown = false;
         }
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
-
-        isPanelShown = false;
     }
 }

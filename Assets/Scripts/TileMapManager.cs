@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TilemapManager : MonoBehaviour
+public class TilemapManager : MonoSingleton<TilemapManager>
 {
     #region Tiles
     public MapRuleTile GrassTile;
@@ -23,27 +23,8 @@ public class TilemapManager : MonoBehaviour
     public Tilemap fogOfWarMap;
     public Res[,] resMultiplierMatrix;
 
-    protected static TilemapManager s_Instance;
-    public static TilemapManager Instance
+    protected override void OnAwake()
     {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<TilemapManager>();
-
-            return s_Instance;
-        }
-    }
-
-    void Awake()
-    {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
         GenerateResMultiplier();
     }
 

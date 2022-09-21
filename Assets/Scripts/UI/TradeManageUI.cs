@@ -3,21 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TradeManageUI : UI, IUpdateUI
+public class TradeManageUI : CanvasUI<TradeManageUI>, IUpdateUI
 {
-    protected static TradeManageUI s_Instance;
-    public static TradeManageUI Instance
-    {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<TradeManageUI>();
-
-            return s_Instance;
-        }
-    }
-
     public TMP_Text capacityText;
     public TMP_InputField foodTradeText;
     public TMP_Text foodCoinText;
@@ -30,16 +17,6 @@ public class TradeManageUI : UI, IUpdateUI
     {
         base.ToggleVisibility();
         UpdateUI();
-    }
-
-    void Awake()
-    {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
     }
 
     void CheckTradeSuccessful(Res tradeResource)

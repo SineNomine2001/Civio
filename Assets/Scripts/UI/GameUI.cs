@@ -3,21 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameUI : UI
+public class GameUI : CanvasUI<GameUI>
 {
-    protected static GameUI s_Instance;
-    public static GameUI Instance
-    {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<GameUI>();
-
-            return s_Instance;
-        }
-    }
-
     public Player player;
     Action updateUIs;
 
@@ -28,16 +15,6 @@ public class GameUI : UI
             updateUIs?.Invoke();
             yield return new WaitForSeconds(1f);
         }
-    }
-
-    void Awake()
-    {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
     }
 
     void Start()
@@ -56,7 +33,7 @@ public class GameUI : UI
         }
     }
 
-    public void HideAllExcept(UI ui)
+    public void HideAllExcept(GameObject ui)
     {
         HideAll();
         ui.GetComponent<Canvas>().enabled = true;

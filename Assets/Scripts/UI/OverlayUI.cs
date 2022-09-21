@@ -3,34 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class OverlayUI : UI
+public class OverlayUI : CanvasUI<OverlayUI>
 {
-    protected static OverlayUI s_Instance;
-    public static OverlayUI Instance
-    {
-        get
-        {
-            if (s_Instance != null)
-                return s_Instance;
-            s_Instance = FindObjectOfType<OverlayUI>();
-
-            return s_Instance;
-        }
-    }
-
     float fadeTime = 1f;
 
     public TMP_Text WarningText;
-
-    void Awake()
-    {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        s_Instance = this;
-    }
 
     public IEnumerator ShowText()
     {
