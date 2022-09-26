@@ -9,7 +9,7 @@ public class OverlayUI : CanvasUI<OverlayUI>
 
     public TMP_Text WarningText;
 
-    public IEnumerator ShowText()
+    IEnumerator ShowText()
     {
         Color temp = WarningText.color;
         temp.a = 0f;
@@ -22,6 +22,15 @@ public class OverlayUI : CanvasUI<OverlayUI>
             WarningText.color = Color.Lerp(opaque, transparent, t / fadeTime);
             yield return null;
         }
+    }
+
+    public void ShowParaText(string text)
+    {
+        Show();
+        WarningText.text = text;
+
+        StopAllCoroutines();
+        StartCoroutine(ShowText());
     }
 
     public void ShowPlacementFailureText(PlaceBuildingResult result)

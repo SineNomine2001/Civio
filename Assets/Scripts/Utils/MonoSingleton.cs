@@ -28,7 +28,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 Destroy(this.gameObject);
                 return;
             }
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
             instance = this.gameObject.GetComponent<T>();
         }
         this.OnAwake();

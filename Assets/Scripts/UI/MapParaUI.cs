@@ -6,9 +6,10 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
-/// Map generation manager in charge of supplying parameters to the tile automata
+/// Map generation manager in charge of supplying parameters to the tile automata.
+/// ! Not implemented yet !
 /// </summary>
-public class MapGenUI : CanvasUI<MapGenUI>
+public class MapParaUI : CanvasUI<MapParaUI>
 {
     public TMP_InputField randSeedInput;
     public Slider riverNumberSlider;
